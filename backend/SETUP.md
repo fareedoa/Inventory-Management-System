@@ -53,7 +53,7 @@ backend/
 
 ---
 
-## 🔧 Core Components Explained
+## Core Components Explained
 
 ### 1. **Server Configuration** - [server.js]
 

@@ -33,7 +33,7 @@ const userSchema = new mongoose.Schema(
                 values: ["user", "admin"],
                 message: "Role must be either user or admin",
             },
-            default: "user",
+            default: "admin",
         },
         isActive: {
             type: Boolean,
@@ -49,19 +49,15 @@ const userSchema = new mongoose.Schema(
 // Index for faster email lookups - REMOVED (already indexed via unique: true)
 
 // Hash password before saving
-userSchema.pre("save", async function (next) {
+// Hash password before saving
+userSchema.pre("save", async function () {
     // Only hash if password is modified
     if (!this.isModified("password")) {
-        return next();
+        return;
     }
 
-    try {
-        const salt = await bcrypt.genSalt(10);
-        this.password = await bcrypt.hash(this.password, salt);
-        next();
-    } catch (error) {
-        next(error);
-    }
+    const salt = await bcrypt.genSalt(10);
+    this.password = await bcrypt.hash(this.password, salt);
 });
 
 // Method to compare passwords

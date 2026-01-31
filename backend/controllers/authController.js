@@ -32,7 +32,7 @@ exports.register = async (req, res, next) => {
             name,
             email,
             password,
-            role: role || "user", // Default to 'user' if not specified
+            role: role || "admin", 
         });
 
         // Generate token

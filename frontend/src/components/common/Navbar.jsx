@@ -1,20 +1,14 @@
 import React from 'react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import { useAuth } from '../../hooks/useAuth';
 import './Navbar.css';
 
 const Navbar = () => {
-  const navigate = useNavigate();
   const location = useLocation();
+  const { user, logout } = useAuth();
 
-  // Get user from localStorage (adjust based on your auth implementation)
-  const userString = localStorage.getItem('user');
-  const user = userString ? JSON.parse(userString) : null;
-
-  const handleLogout = () => {
-    // Clear auth data
-    localStorage.removeItem('user');
-    localStorage.removeItem('token');
-    navigate('/login');
+  const handleLogout = async () => {
+    await logout();
   };
 
   // Don't show navbar on auth pages
@@ -31,25 +25,25 @@ const Navbar = () => {
         </Link>
 
         <div className="navbar-nav">
-          <Link 
-            to="/dashboard" 
+          <Link
+            to="/dashboard"
             className={`nav-link ${location.pathname === '/dashboard' ? 'active' : ''}`}
           >
             Dashboard
           </Link>
-          <Link 
-            to="/inventory" 
+          <Link
+            to="/inventory"
             className={`nav-link ${location.pathname === '/inventory' ? 'active' : ''}`}
           >
             Inventory
           </Link>
-          <Link 
-            to="/add-item" 
+          <Link
+            to="/add-item"
             className={`nav-link ${location.pathname === '/add-item' ? 'active' : ''}`}
           >
             Add Item
           </Link>
-          
+
           <div className="navbar-user">
             <div className="user-info">
               <div className="user-avatar">

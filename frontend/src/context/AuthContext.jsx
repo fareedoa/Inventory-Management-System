@@ -28,7 +28,7 @@ export const AuthProvider = ({ children }) => {
   const login = async (credentials) => {
     try {
       const data = await loginService(credentials);
-      setUser(data.user);
+      setUser(data.data.user);
       toast.success(MESSAGES.LOGIN_SUCCESS);
       navigate(ROUTES.DASHBOARD);
       return { success: true };

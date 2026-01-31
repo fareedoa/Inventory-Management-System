@@ -32,7 +32,7 @@ exports.register = async (req, res, next) => {
             name,
             email,
             password,
-            role: role || "admin", 
+            role: role || "admin",
         });
 
         // Generate token
@@ -223,4 +223,22 @@ exports.updatePassword = async (req, res, next) => {
     } catch (error) {
         next(error);
     }
+};
+/**
+ * @desc    Logout user / Clear cookie
+ * @route   POST /api/auth/logout
+ * @access  Public
+ */
+exports.logout = (req, res) => {
+    // If you were using cookies, you would clear them here
+    // res.cookie('token', 'none', {
+    //   expires: new Date(Date.now() + 10 * 1000),
+    //   httpOnly: true
+    // });
+
+    res.status(200).json({
+        success: true,
+        message: "Logged out successfully",
+        data: {},
+    });
 };

@@ -3,6 +3,7 @@ const router = express.Router();
 const {
     register,
     login,
+    logout,
     getMe,
     updatePassword,
 } = require("../controllers/authController");
@@ -21,6 +22,13 @@ router.post("/register", register);
  * @access  Public
  */
 router.post("/login", login);
+
+/**
+ * @route   POST /api/auth/logout
+ * @desc    Logout user
+ * @access  Public
+ */
+router.post("/logout", logout);
 
 /**
  * @route   GET /api/auth/me

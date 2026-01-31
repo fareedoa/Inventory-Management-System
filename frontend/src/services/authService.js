@@ -14,12 +14,12 @@ export const register = async (userData) => {
  */
 export const login = async (credentials) => {
   const response = await api.post(API_ENDPOINTS.LOGIN, credentials);
-  const { token, user } = response.data;
-  
+  const { token, user } = response.data.data;
+
   // Store token and user in localStorage
   localStorage.setItem(TOKEN_KEY, token);
   localStorage.setItem(USER_KEY, JSON.stringify(user));
-  
+
   return response.data;
 };
 
@@ -77,9 +77,18 @@ export const isAuthenticated = () => {
  * Get stored user
  */
 export const getStoredUser = () => {
-  const user = localStorage.getItem(USER_KEY);
-  return user ? JSON.parse(user) : null;
+  const storedUser = localStorage.getItem(USER_KEY);
+  if (!storedUser) return null;
+
+  try {
+    return JSON.parse(storedUser);
+  } catch (error) {
+    console.error('Failed to parse stored user:', error);
+    localStorage.removeItem(USER_KEY);
+    return null;
+  }
 };
+
 
 /**
  * Get stored token

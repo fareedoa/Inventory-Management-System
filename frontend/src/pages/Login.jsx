@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useAuth } from '../hooks/useAuth';
 import LoginForm from '../components/auth/LoginForm';
 import { FcGoogle } from 'react-icons/fc';
 import { toast } from 'react-toastify';
 import './Auth.css';
+import { useAuth } from '../hooks/useAuth';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const { login } = useAuth();
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = async (formData) => {
     setLoading(true);
@@ -16,16 +17,16 @@ const Login = () => {
       await login(formData);
     } catch (error) {
       console.error('Login error:', error);
-      toast.error('Login failed. Please try again.');
+      // AuthContext catches errors, but if something throws that isn't caught there...
     } finally {
       setLoading(false);
     }
   };
 
   const handleGoogleSignIn = () => {
-    
+
     toast.info('Google Sign-In will be implemented with backend OAuth integration');
-    
+
   };
 
   return (
@@ -36,7 +37,7 @@ const Login = () => {
           <span className="brand-logo">📦</span>
           <h2 className="brand-title">Inventory Manager</h2>
           <p className="brand-description">
-            Streamline your inventory operations with our powerful management system. 
+            Streamline your inventory operations with our powerful management system.
             Track, manage, and optimize your stock in real-time.
           </p>
         </div>
@@ -58,8 +59,8 @@ const Login = () => {
           </div>
 
           {/* Google Sign-In Button */}
-          <button 
-            type="button" 
+          <button
+            type="button"
             className="google-signin-btn"
             onClick={handleGoogleSignIn}
           >

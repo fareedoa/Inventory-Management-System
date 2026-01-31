@@ -30,7 +30,8 @@ const RegisterForm = ({ onSubmit, loading }) => {
       return;
     }
 
-    onSubmit(formData);
+    const {confirmPassword, ...payload} = formData;
+    onSubmit(payload);
   };
 
   return (

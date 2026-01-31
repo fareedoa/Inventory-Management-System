@@ -37,10 +37,13 @@ api.interceptors.response.use(
       switch (status) {
         case 401:
           // Unauthorized - clear token and redirect to login
-          localStorage.removeItem(TOKEN_KEY);
-          localStorage.removeItem('user');
-          toast.error(MESSAGES.UNAUTHORIZED);
-          window.location.href = '/login';
+          // but ONLY if we are not already trying to login (which would cause a loop or bad UX on wrong password)
+          if (!error.config.url.includes('/auth/login')) {
+            localStorage.removeItem(TOKEN_KEY);
+            localStorage.removeItem('user');
+            toast.error(MESSAGES.UNAUTHORIZED);
+            window.location.href = '/login';
+          }
           break;
         case 403:
           toast.error('Access forbidden');

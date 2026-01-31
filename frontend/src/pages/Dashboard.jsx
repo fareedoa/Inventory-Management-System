@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { FiBox, FiAlertTriangle, FiXCircle, FiDollarSign, FiPlus, FiList, FiBarChart2, FiEdit2, FiTrash2, FiArrowRight } from 'react-icons/fi';
 import './Dashboard.css';
 
 const Dashboard = () => {
@@ -23,26 +24,28 @@ const Dashboard = () => {
       // Replace with your actual API call
       // const response = await getDashboardStats();
       // setStats(response.data);
-      
+
       // Mock data for demonstration
+      // Mock data for demonstration - in real app, these would come from API
+      // We are simulating a delay for realistic loading effect
       setTimeout(() => {
         setStats({
-          totalItems: 156,
+          totalItems: 1245,
           lowStock: 12,
           outOfStock: 3,
-          totalValue: 45780,
+          totalValue: 124500,
         });
-        
+
         setRecentItems([
-          { id: 1, name: 'Laptop Dell XPS 15', quantity: 5, price: 1299 },
-          { id: 2, name: 'Wireless Mouse', quantity: 45, price: 29.99 },
-          { id: 3, name: 'USB-C Cable', quantity: 120, price: 12.99 },
-          { id: 4, name: 'Monitor 27"', quantity: 8, price: 349 },
-          { id: 5, name: 'Keyboard Mechanical', quantity: 15, price: 89.99 },
+          { id: 1, name: 'MacBook Pro 16"', quantity: 4, price: 2399.00 },
+          { id: 2, name: 'Logitech MX Master 3', quantity: 15, price: 99.99 },
+          { id: 3, name: 'Samsung 49" Odyssey', quantity: 2, price: 1199.99 },
+          { id: 4, name: 'Keychron K2', quantity: 0, price: 79.99 },
+          { id: 5, name: 'AirPods Pro', quantity: 8, price: 249.00 },
         ]);
-        
+
         setLoading(false);
-      }, 800);
+      }, 600);
     } catch (error) {
       console.error('Error fetching dashboard data:', error);
       setLoading(false);
@@ -70,7 +73,9 @@ const Dashboard = () => {
       {/* Stats Grid */}
       <div className="stats-grid">
         <div className="stat-card stat-card-primary">
-          <div className="stat-icon">📦</div>
+          <div className="stat-icon">
+            <FiBox />
+          </div>
           <div className="stat-content">
             <div className="stat-label">Total Items</div>
             <div className="stat-value">{stats.totalItems}</div>
@@ -81,7 +86,9 @@ const Dashboard = () => {
         </div>
 
         <div className="stat-card stat-card-warning">
-          <div className="stat-icon">⚠️</div>
+          <div className="stat-icon">
+            <FiAlertTriangle />
+          </div>
           <div className="stat-content">
             <div className="stat-label">Low Stock</div>
             <div className="stat-value">{stats.lowStock}</div>
@@ -92,7 +99,9 @@ const Dashboard = () => {
         </div>
 
         <div className="stat-card stat-card-danger">
-          <div className="stat-icon">❌</div>
+          <div className="stat-icon">
+            <FiXCircle />
+          </div>
           <div className="stat-content">
             <div className="stat-label">Out of Stock</div>
             <div className="stat-value">{stats.outOfStock}</div>
@@ -103,7 +112,9 @@ const Dashboard = () => {
         </div>
 
         <div className="stat-card stat-card-success">
-          <div className="stat-icon">💰</div>
+          <div className="stat-icon">
+            <FiDollarSign />
+          </div>
           <div className="stat-content">
             <div className="stat-label">Total Value</div>
             <div className="stat-value">${stats.totalValue.toLocaleString()}</div>
@@ -119,7 +130,9 @@ const Dashboard = () => {
         <h2 className="section-title">Quick Actions</h2>
         <div className="action-buttons">
           <Link to="/add-item" className="action-card">
-            <div className="action-icon">➕</div>
+            <div className="action-icon">
+              <FiPlus />
+            </div>
             <div className="action-content">
               <h3>Add New Item</h3>
               <p>Add a new product to inventory</p>
@@ -127,7 +140,9 @@ const Dashboard = () => {
           </Link>
 
           <Link to="/inventory" className="action-card">
-            <div className="action-icon">📋</div>
+            <div className="action-icon">
+              <FiList />
+            </div>
             <div className="action-content">
               <h3>View Inventory</h3>
               <p>Browse all inventory items</p>
@@ -135,7 +150,9 @@ const Dashboard = () => {
           </Link>
 
           <Link to="/reports" className="action-card">
-            <div className="action-icon">📊</div>
+            <div className="action-icon">
+              <FiBarChart2 />
+            </div>
             <div className="action-content">
               <h3>Reports</h3>
               <p>View detailed analytics</p>
@@ -149,7 +166,7 @@ const Dashboard = () => {
         <div className="section-header">
           <h2 className="section-title">Recent Items</h2>
           <Link to="/inventory" className="view-all-link">
-            View All →
+            View All <FiArrowRight />
           </Link>
         </div>
 
@@ -184,10 +201,10 @@ const Dashboard = () => {
                   <td>
                     <div className="action-buttons-inline">
                       <button className="btn-icon btn-icon-sm" title="Edit">
-                        ✏️
+                        <FiEdit2 />
                       </button>
                       <button className="btn-icon btn-icon-sm" title="Delete">
-                        🗑️
+                        <FiTrash2 />
                       </button>
                     </div>
                   </td>

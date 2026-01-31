@@ -394,18 +394,14 @@ taskkill /PID <PID> /F
 
 ## 👥 Team Members
 
-- **Frontend Developer:** [Your Name]
-- **Backend Developer:** [Teammate Name]
+- **Frontend Developer:** [Ayertey Vanessa]
+- **Backend Developer:** [Fareed Opare]
 
 ## 📄 License
 
 This project is part of a lab assignment for educational purposes.
 
-## 🤝 Support
 
-For issues or questions, please contact your instructor or teaching assistant.
-
----
 
 **Last Updated:** January 2026
 

@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
+import { FiPackage, FiLayout, FiBox, FiPlus, FiUser, FiLogOut, FiMenu, FiX } from 'react-icons/fi';
 import './Navbar.css';
 
 const Navbar = () => {
   const location = useLocation();
   const { user, logout } = useAuth();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const handleLogout = async () => {
     await logout();
@@ -20,39 +22,51 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="navbar-container">
         <Link to="/dashboard" className="navbar-brand">
-          <span className="brand-icon">📦</span>
+          <div className="brand-icon">
+            <FiPackage />
+          </div>
           <span className="brand-text">Inventory Manager</span>
         </Link>
 
-        <div className="navbar-nav">
+        <button
+          className="mobile-menu-toggle"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        >
+          {isMobileMenuOpen ? <FiX /> : <FiMenu />}
+        </button>
+
+        <div className={`navbar-nav ${isMobileMenuOpen ? 'active' : ''}`}>
           <Link
             to="/dashboard"
             className={`nav-link ${location.pathname === '/dashboard' ? 'active' : ''}`}
+            onClick={() => setIsMobileMenuOpen(false)}
           >
-            Dashboard
+            <FiLayout className="nav-icon" /> Dashboard
           </Link>
           <Link
             to="/inventory"
             className={`nav-link ${location.pathname === '/inventory' ? 'active' : ''}`}
+            onClick={() => setIsMobileMenuOpen(false)}
           >
-            Inventory
+            <FiBox className="nav-icon" /> Inventory
           </Link>
           <Link
             to="/add-item"
             className={`nav-link ${location.pathname === '/add-item' ? 'active' : ''}`}
+            onClick={() => setIsMobileMenuOpen(false)}
           >
-            Add Item
+            <FiPlus className="nav-icon" /> Add Item
           </Link>
 
           <div className="navbar-user">
             <div className="user-info">
               <div className="user-avatar">
-                {user?.name ? user.name.charAt(0).toUpperCase() : user?.email ? user.email.charAt(0).toUpperCase() : 'U'}
+                {user?.name ? user.name.charAt(0).toUpperCase() : <FiUser />}
               </div>
               <span className="user-name">{user?.name || user?.email || 'User'}</span>
             </div>
             <button onClick={handleLogout} className="btn-logout">
-              Logout
+              <FiLogOut /> Logout
             </button>
           </div>
         </div>

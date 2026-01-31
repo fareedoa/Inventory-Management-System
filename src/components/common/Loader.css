@@ -1,0 +1,14 @@
+.loader-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+  gap: 1rem;
+}
+
+.loader-message {
+  color: var(--gray-color);
+  font-size: 1rem;
+  margin-top: 1rem;
+}

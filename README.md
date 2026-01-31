@@ -1,3 +1,4 @@
+HEAD
 # Inventory Management System - Frontend
 
 This is the frontend application for the Inventory Management System built with React.js, developed as part of a MERN stack project.
@@ -407,3 +408,7 @@ For issues or questions, please contact your instructor or teaching assistant.
 ---
 
 **Last Updated:** January 2026
+
+# Inventory-Management-System
+Inventory Management System Using the MERN Stack
+ 26cafcff7f4720a7331c6f5f9503f2498491bd58

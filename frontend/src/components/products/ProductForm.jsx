@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { validateProductForm, hasErrors } from '../../utils/validators';
+import { getAllCategories } from '../../services/categoryService';
+import { toast } from 'react-toastify';
 
 const ProductForm = ({ onSubmit, loading, initialData = {} }) => {
   const [formData, setFormData] = useState({
@@ -12,6 +14,21 @@ const ProductForm = ({ onSubmit, loading, initialData = {} }) => {
     ...initialData,
   });
   const [errors, setErrors] = useState({});
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const data = await getAllCategories(false); // only active categories
+        setCategories(data.data || []);
+      } catch (error) {
+        console.error('Error fetching categories:', error);
+        toast.error('Failed to load categories');
+      }
+    };
+
+    fetchCategories();
+  }, []);
 
   useEffect(() => {
     if (initialData && Object.keys(initialData).length > 0) {
@@ -30,10 +47,10 @@ const ProductForm = ({ onSubmit, loading, initialData = {} }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     // Validate form
     const validationErrors = validateProductForm(formData);
-    
+
     if (hasErrors(validationErrors)) {
       setErrors(validationErrors);
       return;
@@ -129,17 +146,23 @@ const ProductForm = ({ onSubmit, loading, initialData = {} }) => {
 
       <div className="form-group">
         <label htmlFor="category" className="form-label">
-          Category
+          Category *
         </label>
-        <input
-          type="text"
+        <select
           id="category"
           name="category"
           value={formData.category}
           onChange={handleChange}
-          className="form-control"
-          placeholder="Enter category"
-        />
+          className={`form-control ${errors.category ? 'error' : ''}`}
+        >
+          <option value="">Select a category</option>
+          {categories.map((category) => (
+            <option key={category._id} value={category._id}>
+              {category.name}
+            </option>
+          ))}
+        </select>
+        {errors.category && <span className="form-error">{errors.category}</span>}
       </div>
 
       <div className="d-flex gap-2">

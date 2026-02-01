@@ -97,18 +97,17 @@ productSchema.virtual("isOutOfStock").get(function () {
 });
 
 // Pre-save middleware to update inStock status
-productSchema.pre("save", function (next) {
+productSchema.pre("save", function () {
     this.inStock = this.quantity > 0;
-    next();
 });
 
 // Pre-update middleware to update inStock status
-productSchema.pre("findOneAndUpdate", function (next) {
+productSchema.pre("findOneAndUpdate", function () {
     const update = this.getUpdate();
+
     if (update.quantity !== undefined) {
         update.inStock = update.quantity > 0;
     }
-    next();
 });
 
 // Method to update quantity

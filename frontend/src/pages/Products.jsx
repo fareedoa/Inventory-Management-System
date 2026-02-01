@@ -27,8 +27,16 @@ const Products = () => {
   const fetchProducts = async () => {
     try {
       const data = await getAllProducts();
-      setProducts(data.products || data);
-      setFilteredProducts(data.products || data);
+      const response = await getAllProducts();
+
+      const productList = Array.isArray(response?.data)
+        ? response.data
+        : Array.isArray(response?.products)
+          ? response.products
+          : [];
+
+      setProducts(productList);
+      setFilteredProducts(productList);
     } catch (error) {
       console.error('Error fetching products:', error);
       toast.error('Failed to fetch products');

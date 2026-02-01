@@ -95,6 +95,9 @@ export const validateProductForm = (formData) => {
   const quantityError = validateQuantity(formData.quantity);
   if (quantityError) errors.quantity = quantityError;
 
+  const categoryError = validateRequired(formData.category, 'Category');
+  if (categoryError) errors.category = categoryError;
+
   return errors;
 };
 

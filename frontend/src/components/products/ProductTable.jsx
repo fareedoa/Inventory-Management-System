@@ -25,7 +25,7 @@ const ProductTable = ({ products, onDelete }) => {
     }
   };
 
-  if (!products || products.length === 0) {
+  if (!products || !Array.isArray(products) || products.length === 0) {
     return (
       <div className="text-center p-4">
         <p>No products found.</p>

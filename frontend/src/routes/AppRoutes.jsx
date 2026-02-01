@@ -9,6 +9,9 @@ import Dashboard from '../pages/Dashboard';
 import Products from '../pages/Products';
 import AddProduct from '../pages/AddProduct';
 import EditProduct from '../pages/EditProduct';
+import Categories from '../pages/Categories';
+import AddCategory from '../pages/AddCategory';
+import EditCategory from '../pages/EditCategory';
 import Profile from '../pages/Profile';
 
 const AppRoutes = () => {
@@ -52,6 +55,30 @@ const AppRoutes = () => {
         }
       />
       <Route
+        path="/categories"
+        element={
+          <PrivateRoute>
+            <Categories />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/categories/add"
+        element={
+          <PrivateRoute>
+            <AddCategory />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/categories/edit/:id"
+        element={
+          <PrivateRoute>
+            <EditCategory />
+          </PrivateRoute>
+        }
+      />
+      <Route
         path="/profile"
         element={
           <PrivateRoute>
@@ -62,7 +89,7 @@ const AppRoutes = () => {
 
       {/* Default Route */}
       <Route path="/" element={<Navigate to="/dashboard" replace />} />
-      
+
       {/* 404 Route */}
       <Route path="*" element={<Navigate to="/dashboard" replace />} />
     </Routes>

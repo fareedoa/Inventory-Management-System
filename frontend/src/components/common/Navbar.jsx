@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
-import { FiPackage, FiLayout, FiBox, FiPlus, FiUser, FiLogOut, FiMenu, FiX } from 'react-icons/fi';
+import { FiPackage, FiLayout, FiBox, FiFolder, FiPlus, FiUser, FiLogOut, FiMenu, FiX } from 'react-icons/fi';
 import './Navbar.css';
 
 const Navbar = () => {
@@ -10,6 +10,7 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const handleLogout = async () => {
+    setIsMobileMenuOpen(false);
     await logout();
   };
 
@@ -44,15 +45,22 @@ const Navbar = () => {
             <FiLayout className="nav-icon" /> Dashboard
           </Link>
           <Link
-            to="/inventory"
-            className={`nav-link ${location.pathname === '/inventory' ? 'active' : ''}`}
+            to="/products"
+            className={`nav-link ${location.pathname === '/products' ? 'active' : ''}`}
             onClick={() => setIsMobileMenuOpen(false)}
           >
             <FiBox className="nav-icon" /> Inventory
           </Link>
           <Link
-            to="/add-item"
-            className={`nav-link ${location.pathname === '/add-item' ? 'active' : ''}`}
+            to="/categories"
+            className={`nav-link ${location.pathname.startsWith('/categories') ? 'active' : ''}`}
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            <FiFolder className="nav-icon" /> Categories
+          </Link>
+          <Link
+            to="/products/add"
+            className={`nav-link ${location.pathname === '/products/add' ? 'active' : ''}`}
             onClick={() => setIsMobileMenuOpen(false)}
           >
             <FiPlus className="nav-icon" /> Add Item

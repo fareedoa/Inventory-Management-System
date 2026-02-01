@@ -129,7 +129,7 @@ const Dashboard = () => {
       <div className="quick-actions">
         <h2 className="section-title">Quick Actions</h2>
         <div className="action-buttons">
-          <Link to="/add-item" className="action-card">
+          <Link to="/products/add" className="action-card">
             <div className="action-icon">
               <FiPlus />
             </div>
@@ -139,7 +139,7 @@ const Dashboard = () => {
             </div>
           </Link>
 
-          <Link to="/inventory" className="action-card">
+          <Link to="/products" className="action-card">
             <div className="action-icon">
               <FiList />
             </div>
@@ -149,13 +149,13 @@ const Dashboard = () => {
             </div>
           </Link>
 
-          <Link to="/reports" className="action-card">
+          <Link to="/categories" className="action-card">
             <div className="action-icon">
-              <FiBarChart2 />
+              <FiList />
             </div>
             <div className="action-content">
-              <h3>Reports</h3>
-              <p>View detailed analytics</p>
+              <h3>Categories</h3>
+              <p>Browse through all categories</p>
             </div>
           </Link>
         </div>
@@ -165,7 +165,7 @@ const Dashboard = () => {
       <div className="recent-section">
         <div className="section-header">
           <h2 className="section-title">Recent Items</h2>
-          <Link to="/inventory" className="view-all-link">
+          <Link to="/products" className="view-all-link">
             View All <FiArrowRight />
           </Link>
         </div>

@@ -45,10 +45,6 @@ const userSchema = new mongoose.Schema(
     }
 );
 
-// Index for faster email lookups
-// Index for faster email lookups - REMOVED (already indexed via unique: true)
-
-// Hash password before saving
 // Hash password before saving
 userSchema.pre("save", async function () {
     // Only hash if password is modified

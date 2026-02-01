@@ -28,6 +28,8 @@ export const API_ENDPOINTS = {
   // Products
   PRODUCTS: '/products',
   PRODUCT_BY_ID: (id) => `/products/${id}`,
+  LOW_STOCK_PRODUCTS: '/products/lowstock',      
+  OUT_OF_STOCK_PRODUCTS: '/products/outofstock', 
   
   // Categories
   CATEGORIES: '/categories',

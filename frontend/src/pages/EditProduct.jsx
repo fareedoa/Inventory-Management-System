@@ -21,7 +21,15 @@ const EditProduct = () => {
   const fetchProduct = async () => {
     try {
       const data = await getProductById(id);
-      setProduct(data.product || data);
+      // API returns { success: true, data: { ... } }
+      const productData = data.data || data;
+
+      // key fix: flatten complex objects for form consumption
+      if (productData.category && typeof productData.category === 'object') {
+        productData.category = productData.category._id;
+      }
+
+      setProduct(productData);
     } catch (error) {
       toast.error(MESSAGES.PRODUCT_NOT_FOUND);
       navigate('/products');

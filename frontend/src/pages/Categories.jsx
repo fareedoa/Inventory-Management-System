@@ -100,7 +100,6 @@ const Categories = () => {
                                 <tr>
                                     <th>Name</th>
                                     <th>Description</th>
-                                    <th>Products</th>
                                     <th>Status</th>
                                     <th>Actions</th>
                                 </tr>
@@ -115,11 +114,6 @@ const Categories = () => {
                                             <div className="category-description">
                                                 {category.description || 'No description'}
                                             </div>
-                                        </td>
-                                        <td>
-                                            <span className="product-count-badge">
-                                                {category.productCount || 0}
-                                            </span>
                                         </td>
                                         <td>
                                             <span className={`badge ${category.isActive ? 'badge-success' : 'badge-danger'}`}>

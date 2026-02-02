@@ -26,7 +26,7 @@ const Navbar = () => {
           <div className="brand-icon">
             <FiPackage />
           </div>
-          <span className="brand-text">Inventory Manager</span>
+          <span className="brand-text">EasyStock</span>
         </Link>
 
         <button

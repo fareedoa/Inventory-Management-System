@@ -31,14 +31,6 @@ const Register = () => {
     }
   };
 
-  const handleGoogleSignUp = () => {
-    // TODO: Implement Google OAuth
-    // For now, show a message
-    toast.info('Google Sign-Up will be implemented with backend OAuth integration');
-    
-    // When backend is ready, use this pattern:
-    // window.location.href = `${API_URL}/auth/google`;
-  };
 
   return (
     <div className="auth-container">
@@ -46,20 +38,11 @@ const Register = () => {
       <div className="auth-brand-section">
         <div className="brand-content">
           <span className="brand-logo">📦</span>
-          <h2 className="brand-title">Inventory Manager</h2>
+          <h2 className="brand-title">EasyStock</h2>
           <p className="brand-description">
             Join thousands of businesses managing their inventory efficiently. 
             Get started today with your free account.
           </p>
-
-          {/* Animated Analytics Chart */}
-          <div className="brand-analytics">
-            <div className="bar"></div>
-            <div className="bar"></div>
-            <div className="bar"></div>
-            <div className="bar"></div>
-            <div className="bar"></div>
-          </div>
         </div>
       </div>
 
@@ -72,21 +55,6 @@ const Register = () => {
           </div>
 
           <RegisterForm onSubmit={handleSubmit} loading={loading} />
-
-          {/* Divider */}
-          <div className="auth-divider">
-            <span>Or</span>
-          </div>
-
-          {/* Google Sign-Up Button */}
-          <button 
-            type="button" 
-            className="google-signin-btn"
-            onClick={handleGoogleSignUp}
-          >
-            <FcGoogle />
-            <span>Continue with Google</span>
-          </button>
 
           <div className="auth-footer">
             <p>

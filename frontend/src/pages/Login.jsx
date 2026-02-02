@@ -23,11 +23,6 @@ const Login = () => {
     }
   };
 
-  const handleGoogleSignIn = () => {
-
-    toast.info('Google Sign-In will be implemented with backend OAuth integration');
-
-  };
 
   return (
     <div className="auth-container">
@@ -35,7 +30,7 @@ const Login = () => {
       <div className="auth-brand-section">
         <div className="brand-content">
           <span className="brand-logo">📦</span>
-          <h2 className="brand-title">Inventory Manager</h2>
+          <h2 className="brand-title">EasyStock</h2>
           <p className="brand-description">
             Streamline your inventory operations with our powerful management system.
             Track, manage, and optimize your stock in real-time.
@@ -53,20 +48,7 @@ const Login = () => {
 
           <LoginForm onSubmit={handleSubmit} loading={loading} />
 
-          {/* Divider */}
-          <div className="auth-divider">
-            <span>Or</span>
-          </div>
-
-          {/* Google Sign-In Button */}
-          <button
-            type="button"
-            className="google-signin-btn"
-            onClick={handleGoogleSignIn}
-          >
-            <FcGoogle />
-            <span>Continue with Google</span>
-          </button>
+          
 
           {/* Footer */}
           <div className="auth-footer">
